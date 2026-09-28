@@ -522,12 +522,24 @@ def render(ctx):
                 )
             )
             fig_shap.update_layout(
-                height=240,
-                margin=dict(l=10, r=50, t=10, b=10),
+                height=310,
+                margin=dict(l=10, r=50, t=15, b=15),
                 paper_bgcolor="#FFFFFF",
                 plot_bgcolor="#FFFFFF",
-                xaxis=dict(gridcolor="#D9E2EC", tickfont=dict(size=10, color=MUTED), zeroline=False),
-                yaxis=dict(tickfont=dict(size=10.5, color="#334155"), gridcolor="#D9E2EC", zeroline=False),
+                xaxis=dict(
+                    title=dict(
+                        text="คะแนน",
+                        font=dict(size=11.5, color=MUTED)
+                    ),
+                    gridcolor="#D9E2EC",
+                    tickfont=dict(size=11, color=MUTED),
+                    zeroline=False
+                ),
+                yaxis=dict(
+                    tickfont=dict(size=11.5, color="#334155"),
+                    gridcolor="#D9E2EC",
+                    zeroline=False
+                ),
                 showlegend=False
             )
             show_chart(fig_shap, key="ai_feature_importance", expand_height=650)
