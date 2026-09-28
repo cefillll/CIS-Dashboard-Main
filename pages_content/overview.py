@@ -458,7 +458,7 @@ def render(ctx):
                 </div>
 
                 <div style="
-                    color:#F59E0B;
+                    color:{score_label_color};
                     font-size:32px;
                     letter-spacing:5px;
                     line-height:1.2;
