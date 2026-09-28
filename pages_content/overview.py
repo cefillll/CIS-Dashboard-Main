@@ -157,13 +157,15 @@ def render(ctx):
     # เกณฑ์ overall>=65/45 แยกต่างหากจากเกณฑ์ที่ใช้ปัดดาว (ขั้นละ 20 คะแนน) เพราะ
     # เกณฑ์เดิมตัดกลางช่วงดาวเดียวกันพอดี ทำให้หุ้นที่ได้ 2 ดาวเท่ากันบางตัวขึ้น FAIR
     # บางตัวขึ้น CAUTION (ไม่สอดคล้องกัน) — ตอนนี้ label ผูกกับจำนวนดาวตรงๆ ทุกตัว
-    # ที่ได้ดาวเท่ากันจะได้ label เดียวกันเสมอ และมีสีของตัวเอง (score_label_color)
-    # ไม่ยืมสีมาจาก rec_color (คำแนะนำซื้อ/ขาย) อีกต่อไป เพราะเป็นคนละความหมายกัน
+    # ที่ได้ดาวเท่ากันจะได้ label เดียวกันเสมอ
+    # PATCH: ดาวเป็นสีเหลือง (star_color) เสมอ แยกออกจากสีของข้อความ label
+    # (FAIR = เขียว, CAUTION = แดง, ATTRACTIVE = เขียว)
     stars = min(5, max(1, round(overall / 20)))
+    star_color = "#F59E0B"  # ดาวเหลืองเสมอ
     if stars >= 4:
         label, score_label_color = "ATTRACTIVE", "#10B981"
     elif stars == 3:
-        label, score_label_color = "FAIR", "#F59E0B"
+        label, score_label_color = "FAIR", "#10B981"
     else:
         label, score_label_color = "CAUTION", "#EF4444"
 
@@ -458,7 +460,7 @@ def render(ctx):
                 </div>
 
                 <div style="
-                    color:{score_label_color};
+                    color:{star_color};
                     font-size:32px;
                     letter-spacing:5px;
                     line-height:1.2;
